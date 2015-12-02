@@ -4,15 +4,23 @@ import numpy as np
 import os, requests, zipfile, StringIO
 import re
 
-# # get url
-# r = requests.get('http://data.octo.dc.gov/feeds/crime_incidents/archive/crime_incidents_2013_CSV.zip')
-# z = zipfile.ZipFile(StringIO.StringIO(r.content))
-# crime2013 = pandas.read_csv(z.read('crime_incidents_2013_CSV.csv'))
+# get url
+r = requests.get('https://s3-us-west-2.amazonaws.com/openpolicingdata/Fayetteville-11-09-15.xls.zip')
+z = zipfile.ZipFile(StringIO.StringIO(r.content))
 
-# set path and import
-f = os.path.expanduser("~/Downloads/Fayetteville geolocational data.xls")
-dfs = pd.read_excel(f, sheetname=[0,1]) # dictionary of data frames
-df = pd.concat(dfs, ignore_index=True) # stack
+# create dirs and extract fayetteville file
+tmpdir = os.path.join(os.getcwd(), 'temp')
+os.mkdir(tmpdir)
+f = z.namelist()[0]
+z.extract(f, tmpdir)
+df = pd.read_excel(os.path.join(tmpdir, f), sheetname=[0,1])
+os.remove(os.path.join(tmpdir, f))
+os.rmdir(tmpdir)
+
+# # set path and import
+# f = os.path.expanduser("~/Downloads/Fayetteville geolocational data.xls")
+# dfs = pd.read_excel(f, sheetname=[0,1]) # dictionary of data frames
+# df = pd.concat(dfs, ignore_index=True) # stack
 
 # convert stateplane coords to lat long
 latlon = df[['geox', 'geoy']].apply(lambda x: sp.to_latlon(x['geox']/100*0.3048,
