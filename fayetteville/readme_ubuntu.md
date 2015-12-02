@@ -2,9 +2,13 @@
 
 In order to run this script, install in this order from the command line:
 
-1) apt-get install libgeos-dev
-2) apt-get install libgdal-dev
-3) pip install stateplane
+```bash
+$ apt-get install libgeos-dev
+
+$ apt-get install libgdal-dev
+
+$ pip install stateplane
+```
 
 This script was written to convert GIS coordinates from the Fayetteville Police Department that uses the State Plane (NC) System. 
 
