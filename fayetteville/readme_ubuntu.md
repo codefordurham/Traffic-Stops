@@ -1,5 +1,7 @@
 #Ubuntu 14.04:
 
+#USES PYTHON 2.7
+
 In order to run this script, install in this order from the command line:
 
 ```bash
@@ -10,7 +12,7 @@ $ apt-get install libgdal-dev
 $ pip install stateplane
 ```
 
-This script was written to convert GIS coordinates from the Fayetteville Police Department that uses the State Plane (NC) System. 
+This script was written to convert GIS coordinates from the Fayetteville Police Department that uses the State Plane (NC) System.
 
 The python package stateplane is used to accomplish this. Stateplane supports mesurements in meters, so we convert the geox and geoy datafeilds to meters.
 
