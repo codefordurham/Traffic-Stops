@@ -47,5 +47,4 @@ for col in types[(types=='unicode') | (types=='mixed')].index:
   df[col] = df[col].astype(str)
 
 # export
-df.to_csv('/Users/dnoriega/Dropbox/codefordurham/fayetteville.csv', index=False)
-
+df.to_csv('~/fayData.csv', index=False)
