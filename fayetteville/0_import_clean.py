@@ -47,4 +47,4 @@ for col in types[(types=='unicode') | (types=='mixed')].index:
   df[col] = df[col].astype(str)
 
 # export
-df.to_csv('~/fayData.csv', index=False)
+df.to_csv(os.path.join(os.getcwd(), 'fayCSVdata.csv'), index=False)
