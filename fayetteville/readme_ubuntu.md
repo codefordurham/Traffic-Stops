@@ -2,7 +2,13 @@
 
 #USES PYTHON 2.7
 
-In order to run the xlsTOcsv.py script, install in this order from the command line:
+These scripts were written to convert GIS coordinates from the Fayetteville Police Department that uses the State Plane (NC) System.
+
+xlsTOcsv.py takes the raw data from Fayetteville police dept., converts the GIS from stateplane system to degrees north/south, and east/west and then saves this as a .csv file
+
+xlsTOgeoJSON.py takes the raw data from Fayetteville police dept., converts the GIS from stateplane system to degrees north/south, and east/west and then selects the new lat/lon feilds along with a selection of other demographic data and creates a geojson file with said information.
+
+In order to run either script, install in this order from the command line:
 
 ```bash
 $ apt-get install libgeos-dev
@@ -11,8 +17,6 @@ $ apt-get install libgdal-dev
 
 $ pip install stateplane
 ```
-
-This script was written to convert GIS coordinates from the Fayetteville Police Department that uses the State Plane (NC) System.
 
 The python package stateplane is used to accomplish this. Stateplane supports mesurements in meters, so we convert the geox and geoy datafeilds to meters.
 
