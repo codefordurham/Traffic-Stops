@@ -71,7 +71,8 @@ geojson = df_to_geojson(df, cols)
 output_filename = 'FayGeoData.js'
 with open(output_filename, 'wb') as output_file:
   # output_file.write('var dataset = ')
-    json.dump(geojson, output_file, indent=2) 
+    json.dump(geojson, output_file, indent=None) ## indent=None creates a smaller file. 
+                                                 ## Use indent=2 for human readable format
     print 'check your current working directory for FayGeoData.js'
    
 
