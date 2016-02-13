@@ -4,6 +4,8 @@ import numpy as np
 import os, requests, zipfile, StringIO, ssl
 import re
 import json as json
+import urllib3.contrib.pyopenssl
+urllib3.contrib.pyopenssl.inject_into_urllib3()
 
 
 print 'This will take a little while.'
