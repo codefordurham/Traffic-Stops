@@ -1,7 +1,7 @@
 import pandas as pd
 import stateplane as sp
 import numpy as np
-import os, requests, zipfile, StringIO
+import os, requests, zipfile, StringIO, ssl
 import re
 import json as json
 
@@ -31,6 +31,7 @@ os.remove(os.path.join(tmpdir, f))
 os.rmdir(tmpdir)
 
 # convert stateplane coords to lat long
+# note this raw data was missing a decimal point, hence the dividing by 100
 df[['geox', 'geoy']] = df[['geox', 'geoy']].apply(lambda x: sp.to_latlon(x['geox']/100*0.3048,
   x['geoy']/100*0.3048, epsg='2264'), axis=1) # convert
 df.head()
@@ -39,6 +40,10 @@ df.head()
 df.columns = [x.lower() for x in df.columns]
 rx = re.compile('\W+') # get all nonnumeric values (including spaces)
 df.columns = [rx.sub('_', v) for v in df.columns] # all spaces to underscores
+
+# create seperate year, and month columns
+df['year'] = pd.DatetimeIndex(df['stopdate']).year
+df['month'] = pd.DatetimeIndex(df['stopdate']).month
 
 # FIX errors in 'state'
 df.state = 'NC'
@@ -65,7 +70,7 @@ def df_to_geojson(df, properties, lat='geox', lon='geoy'):
         geojson['features'].append(feature)
     return geojson
 
-cols = ['sex', 'race', 'ethnic', 'age', 'street']
+cols = ['sex', 'race', 'ethnic', 'age', 'street', 'year', 'month']
 geojson = df_to_geojson(df, cols)
 
 output_filename = 'FayGeoData.js'

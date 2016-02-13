@@ -19,6 +19,9 @@ Currently, the raw data is downloaded each time the script is run into a tempora
 In order to run either script, install in this order from the command line:
 
 ```bash
+
+$ apt-get install python-pyasn1
+
 $ apt-get install libgeos-dev
 
 $ apt-get install libgdal-dev
