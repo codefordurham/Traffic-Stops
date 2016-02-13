@@ -75,7 +75,7 @@ def df_to_geojson(df, properties, lat='geox', lon='geoy'):
 cols = ['sex', 'race', 'ethnic', 'age', 'street', 'year', 'month']
 geojson = df_to_geojson(df, cols)
 
-output_filename = 'FayGeoData.js'
+output_filename = 'FayGeoData.json'
 with open(output_filename, 'wb') as output_file:
   # output_file.write('var dataset = ')
     json.dump(geojson, output_file, indent=None) ## indent=None creates a smaller file. 
