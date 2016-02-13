@@ -22,6 +22,8 @@ In order to run either script, install in this order from the command line:
 
 $ apt-get install python-pyasn1
 
+$ pip install cryptography
+
 $ apt-get install libgeos-dev
 
 $ apt-get install libgdal-dev
